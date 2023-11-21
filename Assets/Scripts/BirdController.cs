@@ -7,11 +7,11 @@ public class BirdController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
 
-    private Rigidbody2D rb;
+    private Rigidbody rb;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -22,15 +22,13 @@ public class BirdController : MonoBehaviour
         }
     }
 
-     private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Check if the bird collides with the obstacle
-        if (collision.gameObject.CompareTag("Obstacle"))
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.CompareTag("Obstacle"))
         {
-            // Destroy the bird
             Destroy(gameObject);
-        }
+        } 
     }
+
 
     void Jump()
     {
